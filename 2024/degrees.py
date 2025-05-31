@@ -83,6 +83,7 @@ def main():
             movie = movies[path[i + 1][0]]["title"]
             print(f"{i + 1}: {person1} and {person2} starred in {movie}")
 
+
 def shortest_path(source, target):
     """
     Returns the shortest list of (movie_id, person_id) pairs
@@ -92,12 +93,12 @@ def shortest_path(source, target):
     """
     # If the source and target are the same... Skip to the end.
     if source is target:
-      return None
+        return None
 
     # Initialize the current_node and frontier
-    current_node = Node(state = source,
-                        parent = None,
-                        action = None)
+    current_node = Node(state=source,
+                        parent=None,
+                        action=None)
     frontier = QueueFrontier()
     frontier.add(current_node)
 
@@ -115,9 +116,9 @@ def shortest_path(source, target):
             # If the person_id we are on is the target...
             if person_id == target:
                 path = []
-                node = Node(state = person_id,
-                            parent = current_node,
-                            action = movie_id)
+                node = Node(state=person_id,
+                            parent=current_node,
+                            action=movie_id)
 
                 # ...Build path using the known nodes.
                 while node.parent is not None:
@@ -130,12 +131,13 @@ def shortest_path(source, target):
 
             # Otherwise, add it to the frontier if it has not been explored.
             elif person_id not in explored_nodes:
-                frontier.add( Node(state = person_id,
-                                  parent = current_node,
-                                  action = movie_id) )
+                frontier.add(Node(state=person_id,
+                                  parent=current_node,
+                                  action=movie_id))
 
     # If we exhaust the frontier without finding the target, there is no path.
     return None
+
 
 def person_id_for_name(name):
     """
